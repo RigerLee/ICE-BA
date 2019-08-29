@@ -12,6 +12,10 @@ LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../cmake)
 find_package(Glog REQUIRED)
 find_package(GFlags REQUIRED)
 find_package(OpenCV REQUIRED)
+set(BRISK_DIR "${PROJECT_SOURCE_DIR}/../../brisk/build")
+find_package(brisk REQUIRED)
+MESSAGE(WARNING "Found brisk: ${BRISK_INCLUDE_DIRS} ${BRISK_LIBRARIES}")
+set(Yaml_DIR "${PROJECT_SOURCE_DIR}/../../yaml-cpp/build")
 find_package(Yaml REQUIRED)
 
 #include_directories (${GLOG_INCLUDE_DIR})
@@ -69,6 +73,7 @@ target_include_directories(OF PUBLIC
     ${GFLAGS_INCLUDE_DIR}
     ${OpenCV_INCLUDE_DIR}
     ${YAMLCPP_INCLUDE_DIR}
+    ${BRISK_INCLUDE_DIRS}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/cameras
 )
@@ -76,6 +81,7 @@ target_link_libraries(OF
     ${GFLAGS_LIBRARIES}
     ${OpenCV_LIBS}
     ${YAMLCPP_LIBRARIES}
+    ${BRISK_LIBRARIES}
     IBA
     glog
 )
